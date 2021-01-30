@@ -1,0 +1,115 @@
+* {
+  font-family: "Courier New", Courier, monospace;
+  --color-bg: #f2f2f2;
+  --color-bg-shadow: #e1e1e1;
+  --color-fg: black;
+  --color-primary: rebeccapurple;
+  --color-secondary: lavender;
+}
+
+html, body {
+  width: max(440px, 100%);
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.fade-in {
+  animation-name: fade-in;
+}
+
+.animation-duration-slow {
+  animation-duration: 1s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0%;
+    transform: translate(100%, 0%);
+  }
+  to {
+    opacity: 100%;
+    transform: initial;
+  }
+}
+
+.shadow {
+  box-shadow: -1em 1em 0 var(--color-bg-shadow);
+}
+
+.shadows > * {
+  box-shadow: -1em 1em 0 var(--color-bg-shadow);
+}
+
+.card {
+  display: block;
+  padding: 26px 32px;
+  text-align: center;
+  border: 1px solid var(--color-fg);
+  background-color: var(--color-bg);
+}
+
+.card.fixed {
+  padding-left: 0px;
+  padding-right: 0px;
+  box-sizing: border-box;
+  height: 75px;
+  width: 75px;
+}
+
+.card-dark {
+  color: var(--color-secondary);
+  background-color: var(--color-fg);
+}
+
+a {
+  font-weight: bold;
+  color: inherit;
+}
+
+a:hover {
+  transform: translate(0.2em, -0.2em);
+}
+
+.flex {
+  display: inline-flex;
+  flex-direction: row-reverse;
+}
+
+.flex > * {
+  flex: 0 0 auto;
+}
+
+.m-r-8 > * + * {
+  margin-right: 18px;
+}
+
+.m-t-8 > * + * {
+  margin-top: 18px;
+}
+
+.td-right {
+  writing-mode: vertical-rl;
+}
+
+.w-fixed {
+  width: 400px;
+  margin: 40px;
+}
+
+@media(min-width: 768px) {
+  .effect-3d {
+    transform: rotate(-45deg) skew(10deg, 10deg);
+  }
+}
