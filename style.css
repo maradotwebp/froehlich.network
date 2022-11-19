@@ -45,11 +45,11 @@ body {
 }
 
 .shadow {
-  box-shadow: -1em 1em 0 var(--color-bg-shadow);
+  box-shadow: -6px 6px 0 var(--color-bg-shadow);
 }
 
 .shadows > * {
-  box-shadow: -1em 1em 0 var(--color-bg-shadow);
+  box-shadow: -6px 6px 0 var(--color-bg-shadow);
 }
 
 .card {
@@ -83,6 +83,7 @@ a.card {
 a {
   font-weight: bold;
   color: inherit;
+  transition: transform 150ms;
 }
 
 a:not([href]).card {
@@ -122,5 +123,13 @@ a[href]:hover.card {
 @media(min-width: 768px) {
   .effect-3d {
     transform: rotate(-45deg) skew(10deg, 10deg);
+  }
+
+  .shadow {
+    box-shadow: -1em 1em 0 var(--color-bg-shadow);
+  }
+  
+  .shadows > * {
+    box-shadow: -1em 1em 0 var(--color-bg-shadow);
   }
 }
