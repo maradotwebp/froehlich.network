@@ -6,6 +6,8 @@ import grainSvg from "../assets/grain.svg";
 import avatarSvg from "../assets/avatar.svg";
 
 import {Image, getImage} from "astro:assets";
+import Chapter from "../components/chapter.astro";
+import DecoBall from "../components/DecoBall.astro";
 
 const bg = await getImage({ src: bgImage, format: "jpeg" });
 ---
@@ -21,7 +23,7 @@ const bg = await getImage({ src: bgImage, format: "jpeg" });
 				</div>
 				<div class="heading">
 					<h1>fröhlich.alex</h1>
-					<span>The Web Directory</span>
+					<span>My Web Directory</span>
 				</div>
 				<div class="colorline">
 					<div class="cyan"></div>
@@ -31,13 +33,48 @@ const bg = await getImage({ src: bgImage, format: "jpeg" });
 				</div>
 			</div>
 		</div>
+		<div class="desc">
+			<p>I am a software engineer developing primarily for the web.</p>
+			<p>I design, code, and worry about the little things.</p>
+			<p>These are my collected works.</p>
+		</div>
+		<div class="projects">
+			<Chapter name="Projects">
+				<ul>
+					<li>
+						<a href="https://blinkdb.io/">BlinkDB</a>
+						<p>An in-memory database optimized for offline first web apps.</p>
+					</li>
+					<li>
+						<a href="https://github.com/froehlichA/pax">pax</a>
+						<p>A minecraft modpack manager. Useful when nostalgia hits.</p>
+					</li>
+				</ul>
+			</Chapter>
+			<Chapter name="Tools">
+				<ul>
+					<li><a href="https://files.froehlich.network/">P2P File Distribution</a></li>
+					<li><a href="https://hungry.froehlich.network/">Restaurants in my area</a></li>
+					<li><a href="https://feedback.froehlich.network/">Anonymous feedback</a></li>
+					<li><a href="https://vote.froehlich.network/">Online poll</a></li>
+					<li><a href="https://initiative.froehlich.network/">Initiative tracker</a></li>
+				</ul>
+				Mostly written for personal use. Put online for friends and family.
+			</Chapter>
+			<Chapter name="Libraries / Misc.">
+				<ul>
+					<li><a href="https://github.com/froehlichA/obsidian-avatar">Avatar Image for Obsidian</a></li>
+					<li><a href="https://github.com/froehlichA/driverOS">My custom OS</a></li>
+				</ul>
+			</Chapter>
+			<DecoBall />
+		</div>
 	</div>
 </BaseLayout>
 
 <style>
 	.main {
-		padding: 6em 6vw;
-		height: 100%;
+		padding: 6vw;
 	}
 
 	.hero {
@@ -138,32 +175,62 @@ const bg = await getImage({ src: bgImage, format: "jpeg" });
 		background: black;
 	}
 
+	.desc {
+		margin: 2em 0;
+		font-size: clamp(2em, 7vw, 3em);
+		line-height: 1.2em;
+	}
+
+	.desc p {
+		margin: 0;
+	}
+
+	.projects {
+		font-size: 1.4em;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-template-rows: repeat(auto-fill, 1fr);
+		grid-auto-flow: row dense;
+		gap: 2em;
+	}
+
 	a {
 		color: inherit;
 		text-decoration: underline;
 	}
 
 	@media only screen and (max-width: 660px) {
-		.main {
-			padding: 6vw 0 6vw 6vw;
-		}
-
 		.hero {
 			grid-template-columns: 1fr;
+			margin: -6vw -6vw 0 -6vw;
 		}
 
 		.avatar {
-			position: absolute;
-			grid-column: 1 / span 2;
-			grid-row: 1 / span 7;
-			left: -45vw;
-			bottom: 0;
-			z-index: -1;
+			max-height: 80vh;
 		}
 
 		.bg {
-			border-top-right-radius: 0px;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
 			border-bottom-left-radius: 42px;
+			border-bottom-right-radius: 42px;
+
+			height: 65%;
+		}
+
+		.content {
+			margin-top: 4em;
+			color: black;
+			border-radius: 12px;
+			align-items: center;
+		}
+
+		.colorline {
+			display: none;
+		}
+
+		.desc {
+			text-align: center;
 		}
 	}
 </style>

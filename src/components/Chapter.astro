@@ -1,0 +1,37 @@
+---
+export interface Props {
+  name: string;
+}
+
+const props = Astro.props;
+---
+
+
+<div class="chapter">
+  <p>{props.name}</p>
+  <slot />
+</div>
+
+<style is:global>
+  .chapter > p {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .chapter p {
+    margin: 0;
+  }
+
+  .chapter li p {
+    font-style: italic;
+  }
+
+  .chapter ul {
+    margin-top: 0;
+    list-style-type: lower-greek;
+  }
+
+  .chapter li::marker {
+    color: rgb(128, 128, 128);
+  }
+</style>
