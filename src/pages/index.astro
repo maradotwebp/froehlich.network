@@ -1,0 +1,133 @@
+---
+import BaseLayout from "../layout/BaseLayout.astro";
+
+import bgImage from "../assets/bg/forest.avif";
+import grainSvg from "../assets/grain.svg";
+import avatarSvg from "../assets/avatar.svg";
+
+import {Image, getImage} from "astro:assets";
+
+const bg = await getImage({ src: bgImage, format: "jpeg" });
+---
+
+<BaseLayout>
+	<div class="main">
+		<div class="main-element" style={`--bg: url(${bg.src}); --grain: url(${grainSvg.src});`}>
+			<Image src={avatarSvg} alt="Avatar" class="avatar" />
+			<div class="content">
+				<div class="content-on-main">
+					<div class="links">
+						<a href="https://github.com/froehlichA">Github</a>
+					</div>
+					<div class="heading">
+						<h1>fröhlich.alex</h1>
+						<span>The Web Directory</span>
+					</div>
+					<div class="colorline">
+						<div class="cyan"></div>
+						<div class="magenta"></div>
+						<div class="yellow"></div>
+						<div class="black"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	.main {
+		padding: 6em 6%;
+		height: 100%;
+	}
+
+	.main-element {
+		position: relative;
+
+		box-sizing: border-box;
+		border-top-left-radius: 42px;
+		border-top-right-radius: 42px;
+		padding: 3em;
+		height: 100vh;
+
+		background-image: var(--grain), var(--bg);
+		background-position: center, center bottom;
+		background-size: auto, cover;
+		filter: contrast(150%) saturate(110%) brightness(120%);
+		background-attachment: fixed;
+		background-repeat: repeat, no-repeat;
+
+		display: flex;
+		gap: 4em;
+	}
+
+	.avatar {
+		flex: 0 0 30%;
+
+		max-width: 100%;
+		height: 130%;
+		object-fit: contain;
+	}
+
+	.content {
+		flex: 1 1 auto;
+		height: 130%;
+	}
+
+	.content-on-main {
+		height: calc(100% / 13 * 10);
+
+		display: flex;
+		flex-direction: column;
+		align-items: end;
+		justify-content: space-between;
+
+		color: white;
+	}
+
+	.heading {
+		text-align: end;
+	}
+
+	.heading h1 {
+		font-size: 8em;
+		font-style: italic;
+		color: aliceblue;
+		mix-blend-mode: exclusion;
+		margin: 0;
+	}
+
+	.heading span {
+		font-size: 2em;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: underline;
+	}
+
+	.colorline {
+		display: flex;
+	}
+
+	.colorline > * {
+		height: 1em;
+		width: 1em;
+	}
+
+	.cyan {
+		background: cyan;
+	}
+
+	.magenta {
+		background: magenta;
+	}
+
+	.yellow {
+		background: yellow;
+	}
+
+	.black {
+		background: black;
+	}
+</style>
