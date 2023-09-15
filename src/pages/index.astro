@@ -12,23 +12,22 @@ const bg = await getImage({ src: bgImage, format: "jpeg" });
 
 <BaseLayout>
 	<div class="main">
-		<div class="main-element" style={`--bg: url(${bg.src}); --grain: url(${grainSvg.src});`}>
+		<div class="hero">
+			<div class="bg" style={`--bg: url(${bg.src}); --grain: url(${grainSvg.src});`} />
 			<Image src={avatarSvg} alt="Avatar" class="avatar" />
 			<div class="content">
-				<div class="content-on-main">
-					<div class="links">
-						<a href="https://github.com/froehlichA">Github</a>
-					</div>
-					<div class="heading">
-						<h1>fröhlich.alex</h1>
-						<span>The Web Directory</span>
-					</div>
-					<div class="colorline">
-						<div class="cyan"></div>
-						<div class="magenta"></div>
-						<div class="yellow"></div>
-						<div class="black"></div>
-					</div>
+				<div class="links">
+					<a href="https://github.com/froehlichA">Github</a>
+				</div>
+				<div class="heading">
+					<h1>fröhlich.alex</h1>
+					<span>The Web Directory</span>
+				</div>
+				<div class="colorline">
+					<div class="cyan"></div>
+					<div class="magenta"></div>
+					<div class="yellow"></div>
+					<div class="black"></div>
 				</div>
 			</div>
 		</div>
@@ -37,18 +36,26 @@ const bg = await getImage({ src: bgImage, format: "jpeg" });
 
 <style>
 	.main {
-		padding: 6em 6%;
+		padding: 6em 6vw;
 		height: 100%;
 	}
 
-	.main-element {
+	.hero {
 		position: relative;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(8, 1fr);
+		padding: 3em;
+	}
 
-		box-sizing: border-box;
+	.bg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: calc(100% / 8 * 7);
+		width: 100%;
 		border-top-left-radius: 42px;
 		border-top-right-radius: 42px;
-		padding: 3em;
-		height: 100vh;
 
 		background-image: var(--grain), var(--bg);
 		background-position: center, center bottom;
@@ -57,40 +64,44 @@ const bg = await getImage({ src: bgImage, format: "jpeg" });
 		background-attachment: fixed;
 		background-repeat: repeat, no-repeat;
 
-		display: flex;
-		gap: 4em;
+		z-index: -1;
 	}
 
 	.avatar {
-		flex: 0 0 30%;
+		grid-column: span 1;
+		grid-row: span 8;
 
-		max-width: 100%;
-		height: 130%;
+		height: 100%;
+		width: 100%;
+		max-height: 95vh;
 		object-fit: contain;
 	}
 
 	.content {
-		flex: 1 1 auto;
-		height: 130%;
-	}
-
-	.content-on-main {
-		height: calc(100% / 13 * 10);
+		grid-column: span 2;
+		grid-row: span 7;
 
 		display: flex;
 		flex-direction: column;
-		align-items: end;
 		justify-content: space-between;
+		gap: 2em;
+		align-items: end;
 
 		color: white;
 	}
 
+	.links {
+		grid-column: span 2;
+		font-size: 1.2em;
+	}
+
 	.heading {
+		grid-column: span 2;
 		text-align: end;
 	}
 
 	.heading h1 {
-		font-size: 8em;
+		font-size: min(8em, 12vw);
 		font-style: italic;
 		color: aliceblue;
 		mix-blend-mode: exclusion;
@@ -98,15 +109,11 @@ const bg = await getImage({ src: bgImage, format: "jpeg" });
 	}
 
 	.heading span {
-		font-size: 2em;
-	}
-
-	a {
-		color: inherit;
-		text-decoration: underline;
+		font-size: min(2em, 6vw);
 	}
 
 	.colorline {
+		grid-column: span 2;
 		display: flex;
 	}
 
@@ -129,5 +136,34 @@ const bg = await getImage({ src: bgImage, format: "jpeg" });
 
 	.black {
 		background: black;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: underline;
+	}
+
+	@media only screen and (max-width: 660px) {
+		.main {
+			padding: 6vw 0 6vw 6vw;
+		}
+
+		.hero {
+			grid-template-columns: 1fr;
+		}
+
+		.avatar {
+			position: absolute;
+			grid-column: 1 / span 2;
+			grid-row: 1 / span 7;
+			left: -45vw;
+			bottom: 0;
+			z-index: -1;
+		}
+
+		.bg {
+			border-top-right-radius: 0px;
+			border-bottom-left-radius: 42px;
+		}
 	}
 </style>
