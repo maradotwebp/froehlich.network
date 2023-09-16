@@ -9,16 +9,13 @@ import {Image, getImage} from "astro:assets";
 import Chapter from "../components/Chapter.astro";
 import DecoBall from "../components/DecoBall.astro";
 
-const bgBig = await getImage({ src: bgImage, format: "jpeg" });
-const bgSmall = await getImage({ src: bgImage, format: "jpeg", width: 800 });
-const bgUrl = `image-set(url(${bgSmall.src}) 1x, url(${bgBig.src}) 2x)`;
-const grainUrl = `url(${grainSvg.src})`;
+const bg = await getImage({ src: bgImage, format: "jpeg" });
 ---
 
 <BaseLayout>
 	<div class="main">
 		<div class="hero">
-			<div class="bg" style={`--bg: ${bgUrl}; --grain: ${grainUrl};`} />
+			<div class="bg" style={`--bg: url(${bg.src}); --grain: url(${grainSvg.src});`} />
 			<Image src={avatarSvg} alt="Avatar" class="avatar" />
 			<div class="content">
 				<div class="links">
