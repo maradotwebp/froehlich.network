@@ -8,26 +8,30 @@ const props = Astro.props;
 
 
 <div class="chapter">
-  <p>{props.name}</p>
-  <slot />
+  <p class="name">{props.name}</p>
+  <div class="content">
+    <slot />
+  </div>
 </div>
 
 <style is:global>
-  .chapter > p {
+  .chapter .name {
     text-transform: uppercase;
     font-weight: bold;
+    margin: 0;
   }
 
-  .chapter p {
-    margin: 0;
+  .chapter .content > * {
+    margin-top: 0;
+    margin-bottom: 1em;
   }
 
   .chapter li p {
     font-style: italic;
+    margin: 0;
   }
 
   .chapter ul {
-    margin-top: 0;
     list-style-type: lower-greek;
   }
 
