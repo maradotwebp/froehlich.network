@@ -19,6 +19,7 @@ const bg = await getImage({ src: bgImage, format: "jpeg" });
 			<Image src={avatarSvg} alt="Avatar" class="avatar" />
 			<div class="content">
 				<div class="links">
+					<a href="mailto:froehlich.alexander@pm.me">froehlich.alexander@pm.me</a>
 					<a href="https://github.com/froehlichA">Github</a>
 				</div>
 				<div class="heading">
@@ -130,6 +131,12 @@ const bg = await getImage({ src: bgImage, format: "jpeg" });
 	.links {
 		grid-column: span 2;
 		font-size: 1.2em;
+	}
+
+	.links > * + * {
+		margin-left: 1em;
+		border-left: 1px solid white;
+		padding-left: 1em;
 	}
 
 	.heading {
