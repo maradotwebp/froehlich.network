@@ -9,13 +9,17 @@ import {Image, getImage} from "astro:assets";
 import Chapter from "../components/Chapter.astro";
 import DecoBall from "../components/DecoBall.astro";
 
-const bg = await getImage({ src: bgImage, format: "jpeg" });
+const bgBig = await getImage({ src: bgImage, format: "jpeg" });
+const bgSmall = await getImage({ src: bgImage, format: "jpeg", width: 800 });
+const bgBigUrl = `url(${bgBig.src})`;
+const bgSmallUrl = `url(${bgSmall.src})`;
+const grainUrl = `url(${grainSvg.src})`;
 ---
 
 <BaseLayout>
 	<div class="main">
 		<div class="hero">
-			<div class="bg" style={`--bg: url(${bg.src}); --grain: url(${grainSvg.src});`} />
+			<div class="bg" style={`--bg-big: ${bgBigUrl}; --bg-small: ${bgSmallUrl}; --grain: ${grainUrl};`} />
 			<Image src={avatarSvg} alt="Avatar" class="avatar" />
 			<div class="content">
 				<div class="links">
@@ -98,7 +102,7 @@ const bg = await getImage({ src: bgImage, format: "jpeg" });
 		border-top-left-radius: 42px;
 		border-top-right-radius: 42px;
 
-		background-image: var(--grain), var(--bg);
+		background-image: var(--grain), var(--bg-big);
 		background-position: center, center bottom;
 		background-size: auto, cover;
 		filter: contrast(150%) saturate(110%) brightness(120%);
@@ -226,6 +230,8 @@ const bg = await getImage({ src: bgImage, format: "jpeg" });
 			border-bottom-right-radius: 42px;
 
 			height: 65%;
+
+			background-image: var(--grain), var(--bg-small);
 		}
 
 		.content {
